@@ -388,18 +388,6 @@ snprintf(char *str, size_t size, const char *format, ...)
 }
 #endif
 
-// MSVC does not have vsnprintf(). It does have a _vsnprintf(), but it does
-// not \0-terminate a truncated string as the C standard prescribes.
-static inline int
-vsnprintf(char *str, size_t size, const char *format, va_list args)
-{
-	int result = _vsnprintf (str, size, format, args);
-	if (str != NULL && size != 0)
-		str[size - 1] = '\0';
-	return result;
-}
-#endif  /* _MSC_VER */
-
 // The result should be freed using uio_free().
 // NB. POSIX allows errno to be set for vsprintf(), but does not require it:
 // "The value of errno may be set to nonzero by a library function call
@@ -493,5 +481,4 @@ uio_asprintf(const char *format, ...) {
 	errno = savedErrno;
 	return result;
 }
-
-
+#endif

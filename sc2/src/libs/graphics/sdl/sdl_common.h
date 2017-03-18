@@ -42,6 +42,8 @@ extern SDL_Surface *SDL_Video;
 extern SDL_Surface *SDL_Screen;
 extern SDL_Surface *TransitionScreen;
 
+extern SDL_Renderer *SDL_ScreenRenderer;
+
 extern SDL_Surface *SDL_Screens[TFB_GFX_NUMSCREENS];
 
 extern SDL_Surface *format_conv_surf;

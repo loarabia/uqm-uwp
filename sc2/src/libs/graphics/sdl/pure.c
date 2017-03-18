@@ -142,6 +142,7 @@ TFB_Pure_ConfigureVideo (int driver, int flags, int width, int height, int toggl
 		videomode_flags);
 
 	SDL_Video = SDL_GetWindowSurface(screen);
+	SDL_ScreenRenderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
 	if (SDL_Video == NULL)
 	{
 		log_add (log_Error, "Couldn't set %ix%i video mode: %s",
@@ -382,6 +383,7 @@ TFB_Pure_Scaled_Postprocess (void)
 		SDL_BlitSurface (scalebuffer, &updated, SDL_Video, &updated);
 	//FIX ME - NOW
 	//SDL_UpdateRects (SDL_Video, 1, &updated);
+	SDL_RenderPresent(SDL_ScreenRenderer);
 }
 
 static void
@@ -390,6 +392,7 @@ TFB_Pure_Unscaled_Postprocess (void)
 	//FIXME - NOW
 	//SDL_UpdateRect (SDL_Video, updated.x, updated.y,
 	//		updated.w, updated.h);
+	SDL_RenderPresent(SDL_ScreenRenderer);
 }
 
 static void

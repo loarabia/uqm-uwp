@@ -38,6 +38,7 @@
 SDL_Surface *SDL_Video;
 SDL_Surface *SDL_Screen;
 SDL_Surface *TransitionScreen;
+SDL_Renderer *SDL_ScreenRenderer;
 
 SDL_Surface *SDL_Screens[TFB_GFX_NUMSCREENS];
 

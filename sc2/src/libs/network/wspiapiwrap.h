@@ -16,18 +16,4 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef _WSPIAPIWRAP_H
-#define _WSPIAPIWRAP_H
-
-// HACK. See wspiapiwrap.c
-#	define getaddrinfo WspiapiGetAddrInfo
-#	define getnameinfo WspiapiGetNameInfo
-#	define freeaddrinfo WspiapiFreeAddrInfo
-void WINAPI WspiapiFreeAddrInfo (struct addrinfo *ai);
-int WINAPI WspiapiGetAddrInfo(const char *nodename, const char *servname,
-		const struct addrinfo *hints, struct addrinfo **res);
-int WINAPI WspiapiGetNameInfo (const struct sockaddr *sa, socklen_t salen,
-		char *host, size_t hostlen, char *serv, size_t servlen, int flags);
-
-#endif  /* _WSPIAPIWRAP_H */
-
+#include <WSPiApi.h>

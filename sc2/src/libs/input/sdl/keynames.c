@@ -15,7 +15,7 @@
  */
 
 #include "port.h"
-#include SDL_INCLUDE(SDL.h)
+#include SDL_INCLUDE(SDL2/SDL.h)
 #include <string.h>
 #include "keynames.h"
 
@@ -109,16 +109,16 @@ static keyname keynames[] = {
 	{"y", SDLK_y},
 	{"z", SDLK_z},
 	{"Delete", SDLK_DELETE},
-	{"Keypad-0", SDLK_KP0},
-	{"Keypad-1", SDLK_KP1},
-	{"Keypad-2", SDLK_KP2},
-	{"Keypad-3", SDLK_KP3},
-	{"Keypad-4", SDLK_KP4},
-	{"Keypad-5", SDLK_KP5},
-	{"Keypad-6", SDLK_KP6},
-	{"Keypad-7", SDLK_KP7},
-	{"Keypad-8", SDLK_KP8},
-	{"Keypad-9", SDLK_KP9},
+	{"Keypad-0", SDLK_KP_0},
+	{"Keypad-1", SDLK_KP_1},
+	{"Keypad-2", SDLK_KP_2},
+	{"Keypad-3", SDLK_KP_3},
+	{"Keypad-4", SDLK_KP_4},
+	{"Keypad-5", SDLK_KP_5},
+	{"Keypad-6", SDLK_KP_6},
+	{"Keypad-7", SDLK_KP_7},
+	{"Keypad-8", SDLK_KP_8},
+	{"Keypad-9", SDLK_KP_9},
 	{"Keypad-.", SDLK_KP_PERIOD},
 	{"Keypad-/", SDLK_KP_DIVIDE},
 	{"Keypad-*", SDLK_KP_MULTIPLY},
@@ -156,19 +156,19 @@ static keyname keynames[] = {
 	{"LeftControl", SDLK_LCTRL},
 	{"RightAlt", SDLK_RALT},
 	{"LeftAlt", SDLK_LALT},
-	{"RightMeta", SDLK_RMETA},
-	{"LeftMeta", SDLK_LMETA},
-	{"RightSuper", SDLK_RSUPER},
-	{"LeftSuper", SDLK_LSUPER},
+	{"RightMeta", SDLK_RGUI},
+	{"LeftMeta", SDLK_LGUI},
+	{"RightSuper", SDLK_RGUI},
+	{"LeftSuper", SDLK_LGUI},
 	{"AltGr", SDLK_MODE},
-	{"Compose", SDLK_COMPOSE},
+	{"Compose", SDLK_APPLICATION},
 	{"Help", SDLK_HELP},
-	{"Print", SDLK_PRINT},
+	{"Print", SDLK_PRINTSCREEN},
 	{"SysReq", SDLK_SYSREQ},
-	{"Break", SDLK_BREAK},
+	{"Break", SDLK_PAUSE},
 	{"Menu", SDLK_MENU},
 	{"Power", SDLK_POWER},
-	{"Euro", SDLK_EURO},
+	{"Euro", SDLK_APPLICATION}, /* TODO: used to be euro not sure what that is*/
 	{"Undo", SDLK_UNDO},
 #ifdef _WIN32_WCE
 	{"App1", SDLK_APP1},

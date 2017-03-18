@@ -253,8 +253,7 @@ TFB_InitInput (int driver, int flags)
 	(void)driver;
 	(void)flags;
 
-	SDL_EnableUNICODE(1);
-	(void)SDL_GetKeyState (&num_keys);
+	(void)SDL_GetKeyboardState (&num_keys);
 	kbdstate = (int *)HMalloc (sizeof (int) * (num_keys + 1));
 	
 
@@ -343,8 +342,8 @@ is_numpad_char_event (const SDL_Event *Event)
 	return in_character_mode &&
 			(Event->type == SDL_KEYDOWN || Event->type == SDL_KEYUP) &&
 			(Event->key.keysym.mod & KMOD_NUM) &&  /* NumLock is ON */
-			Event->key.keysym.unicode > 0 &&       /* Printable char */
-			Event->key.keysym.sym >= SDLK_KP0 &&   /* Keypad key */
+			//Event->key.keysym.unicode > 0 &&       /* Printable char */
+			Event->key.keysym.sym >= SDLK_KP_0 &&   /* Keypad key */
 			Event->key.keysym.sym <= SDLK_KP_PLUS;
 }
 
@@ -363,10 +362,9 @@ ProcessInputEvent (const SDL_Event *Event)
 
 	if (Event->type == SDL_KEYDOWN || Event->type == SDL_KEYUP)
 	{	// process character input event, if any
-		// keysym.sym is an SDLKey type which is an enum and can be signed
+		// keysym.sym is an SDL_Keycode type which is an enum and can be signed
 		// or unsigned on different platforms; we'll use a guaranteed type
 		int k = Event->key.keysym.sym;
-		UniChar map_key = Event->key.keysym.unicode;
 
 		if (k < 0 || k > num_keys)
 			k = num_keys; // for unknown keys
@@ -375,19 +373,16 @@ ProcessInputEvent (const SDL_Event *Event)
 		{
 			int newtail;
 
-			// dont care about the non-printable, non-char
-			if (!map_key)
-				return;
-
 			kbdstate[k]++;
 			
 			newtail = (kbdtail + 1) & (KBDBUFSIZE - 1);
 			// ignore the char if the buffer is full
+			//TODO: there was formerlly Unicode code here that I was excised and replaced with k.
 			if (newtail != kbdhead)
 			{
-				kbdbuf[kbdtail] = map_key;
+				kbdbuf[kbdtail] = k;
 				kbdtail = newtail;
-				lastchar = map_key;
+				lastchar = k;
 				menu_vec[KEY_MENU_ANY]++;
 			}
 		}

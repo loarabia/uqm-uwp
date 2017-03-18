@@ -15,7 +15,7 @@
  */
 
 #include "port.h"
-#include SDL_INCLUDE(SDL.h)
+#include SDL_INCLUDE(SDL2/SDL.h)
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -184,9 +184,9 @@ static void
 key_init (void)
 {
 	unsigned int i;
-	int num_keys; // Temp to match type of param for SDL_GetKeyState().
+	int num_keys; // Temp to match type of param for SDL_GetKeyboardState().
 	pool = allocate_key_chunk ();
-	(void)SDL_GetKeyState (&num_keys);
+	(void)SDL_GetKeyboardState (&num_keys);
 	num_sdl_keys = num_keys;
 	bindings = (keybinding **) HMalloc (sizeof (keybinding *) * num_sdl_keys);
 	for (i = 0; i < num_sdl_keys; i++)
@@ -489,7 +489,7 @@ VControl_RemoveGestureBinding (VCONTROL_GESTURE *g, int *target)
 }
 
 int
-VControl_AddKeyBinding (SDLKey symbol, int *target)
+VControl_AddKeyBinding (SDL_Keycode symbol, int *target)
 {
 	if ((unsigned int) symbol >= num_sdl_keys) {
 		log_add (log_Warning, "VControl: Illegal key index %d", symbol);
@@ -500,7 +500,7 @@ VControl_AddKeyBinding (SDLKey symbol, int *target)
 }
 
 void
-VControl_RemoveKeyBinding (SDLKey symbol, int *target)
+VControl_RemoveKeyBinding (SDL_Keycode symbol, int *target)
 {
 	if ((unsigned int) symbol >= num_sdl_keys) {
 		log_add (log_Warning, "VControl: Illegal key index %d", symbol);
@@ -766,7 +766,7 @@ VControl_RemoveAllBindings (void)
 }
 
 void
-VControl_ProcessKeyDown (SDLKey symbol)
+VControl_ProcessKeyDown (SDL_Keycode symbol)
 {
 	if (symbol >= num_sdl_keys) {
 		log_add (log_Warning, "VControl: Got unknown key index %d", symbol);
@@ -777,7 +777,7 @@ VControl_ProcessKeyDown (SDLKey symbol)
 }
 
 void
-VControl_ProcessKeyUp (SDLKey symbol)
+VControl_ProcessKeyUp (SDL_Keycode symbol)
 {
 	if (symbol >= num_sdl_keys)
 		return;

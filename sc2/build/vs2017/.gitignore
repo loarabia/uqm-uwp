@@ -1,0 +1,10 @@
+.DS_Store
+*.lib
+*.ncb
+*.opt
+*.plg
+/Debug*/
+/Release*/
+
+# Visual Studio 2015 cache/options directory
+.vs/

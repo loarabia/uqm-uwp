@@ -163,13 +163,13 @@ mixSDL_Init (audio_Driver *driver, sint32 flags)
 		SDL_QuitSubSystem (SDL_INIT_AUDIO);
 		return -1;
 	}
-
+/*
 	SDL_AudioDriverName (devicename, sizeof (devicename));
 	log_add (log_Info, "    using %s at %d Hz 16 bit %s, "
 			"%d samples audio buffer",
 			devicename, obtained.freq,
 			obtained.channels > 1 ? "stereo" : "mono",
-			obtained.samples);
+			obtained.samples);*/
 
 	log_add (log_Info, "Initializing mixer.");
 	if (!mixer_Init (obtained.freq, MIX_FORMAT_MAKE (2, obtained.channels),

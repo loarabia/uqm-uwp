@@ -393,7 +393,7 @@ event2gesture (SDL_Event *e, VCONTROL_GESTURE *g)
 	{
 	case SDL_KEYDOWN:
 		g->type = VCONTROL_KEY;
-		g->gesture.key = e->key.keysym.sym;
+		g->gesture.key = e->key.keysym.scancode;
 		break;
 	case SDL_JOYAXISMOTION:
 		g->type = VCONTROL_JOYAXIS;
@@ -944,12 +944,12 @@ VControl_HandleEvent (const SDL_Event *e)
 	switch (e->type)
 	{
 		case SDL_KEYDOWN:
-			VControl_ProcessKeyDown (e->key.keysym.sym);
+			VControl_ProcessKeyDown (e->key.keysym.scancode);
 			last_interesting = *e;
 			event_ready = 1;
 			break;
 		case SDL_KEYUP:
-			VControl_ProcessKeyUp (e->key.keysym.sym);
+			VControl_ProcessKeyUp (e->key.keysym.scancode);
 			break;
 
 #ifdef HAVE_JOYSTICK

@@ -339,12 +339,12 @@ ProcessMouseEvent (const SDL_Event *e)
 static inline int
 is_numpad_char_event (const SDL_Event *Event)
 {
-	return in_character_mode &&
+ 	return in_character_mode &&
 			(Event->type == SDL_KEYDOWN || Event->type == SDL_KEYUP) &&
 			(Event->key.keysym.mod & KMOD_NUM) &&  /* NumLock is ON */
 			//Event->key.keysym.unicode > 0 &&       /* Printable char */
 			Event->key.keysym.sym >= SDLK_KP_0 &&   /* Keypad key */
-			Event->key.keysym.sym <= SDLK_KP_PLUS;
+			Event->key.keysym.sym <= SDLK_KP_XOR;
 }
 
 void
@@ -364,7 +364,7 @@ ProcessInputEvent (const SDL_Event *Event)
 	{	// process character input event, if any
 		// keysym.sym is an SDL_Keycode type which is an enum and can be signed
 		// or unsigned on different platforms; we'll use a guaranteed type
-		int k = Event->key.keysym.sym;
+		int k = Event->key.keysym.scancode;
 
 		if (k < 0 || k > num_keys)
 			k = num_keys; // for unknown keys

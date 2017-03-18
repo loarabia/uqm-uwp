@@ -533,10 +533,14 @@ blt_prim(SDL_Surface *src, SDL_Rect src_r, RenderPixelFn plot, int factor,
 		mask = srcfmt->Amask;
 		key = 0;
 	}
-	else if (src->flags & SDL_SRCCOLORKEY)
+	else if (src->flags & SDL_TRUE)
 	{	// colorkey transparency
+		//TODO FIXME check ret value.
+		int *ckey = NULL;
+		int retval = SDL_GetColorKey(src, ckey);
+
 		mask = ~srcfmt->Amask;
-		key = srcfmt->colorkey & mask;
+		key = *ckey & mask;
 	}
 
 	// TODO: calculate the source and destination pointers directly

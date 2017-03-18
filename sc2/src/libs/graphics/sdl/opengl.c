@@ -108,13 +108,17 @@ AttemptColorDepth (int flags, int width, int height, int bpp)
 	SDL_GL_SetAttribute (SDL_GL_DEPTH_SIZE, 0);
 	SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
 
-	videomode_flags = SDL_OPENGL;
+	//videomode_flags = SDL_OPENGL;
 	if (flags & TFB_GFXFLAGS_FULLSCREEN)
-		videomode_flags |= SDL_FULLSCREEN;
-	videomode_flags |= SDL_ANYFORMAT;
+		videomode_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+	//videomode_flags |= SDL_ANYFORMAT;
 
-	SDL_Video = SDL_SetVideoMode (ScreenWidthActual, ScreenHeightActual, 
-		bpp, videomode_flags);
+	SDL_Window *screen = SDL_CreateWindow("UQM",
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		ScreenWidthActual, ScreenHeightActual,
+		videomode_flags);
+
 	if (SDL_Video == NULL)
 	{
 		log_add (log_Error, "Couldn't set OpenGL %ix%ix%i video mode: %s",
@@ -124,12 +128,12 @@ AttemptColorDepth (int flags, int width, int height, int bpp)
 	}
 	else
 	{
-		log_add (log_Info, "Set the resolution to: %ix%ix%i"
+		/*log_add (log_Info, "Set the resolution to: %ix%ix%i"
 				" (surface reports %ix%ix%i)",
 				width, height, bpp,			 
 				SDL_GetVideoSurface()->w, SDL_GetVideoSurface()->h,
 				SDL_GetVideoSurface()->format->BitsPerPixel);
-
+*/
 		log_add (log_Info, "OpenGL renderer: %s version: %s",
 				glGetString (GL_RENDERER), glGetString (GL_VERSION));
 	}
@@ -225,7 +229,7 @@ TFB_GL_ConfigureVideo (int driver, int flags, int width, int height, int togglef
 	glViewport (0, 0, ScreenWidthActual, ScreenHeightActual);
 	glClearColor (0,0,0,0);
 	glClear (GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	SDL_GL_SwapBuffers ();
+	//TODO FIXME - BREAK FOR NOW SDL_GL_SwapBuffers ();
 	glClear (GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	glDisable (GL_DITHER);
 	glDepthMask(GL_FALSE);
@@ -253,8 +257,8 @@ TFB_GL_InitGraphics (int driver, int flags, int width, int height)
 
 	log_add (log_Info, "Initializing SDL with OpenGL support.");
 
-	SDL_VideoDriverName (VideoName, sizeof (VideoName));
-	log_add (log_Info, "SDL driver used: %s", VideoName);
+	//SDL_VideoDriverName (VideoName, sizeof (VideoName));
+	//log_add (log_Info, "SDL driver used: %s", VideoName);
 	log_add (log_Info, "SDL initialized.");
 	log_add (log_Info, "Initializing Screen.");
 
@@ -560,7 +564,7 @@ TFB_GL_Postprocess (void)
 	if (GfxFlags & TFB_GFXFLAGS_SCANLINES)
 		TFB_GL_ScanLines ();
 
-	SDL_GL_SwapBuffers ();
+	//TODO FIX ME -- Break for now // SDL_GL_SwapBuffers ();
 }	
 
 #endif

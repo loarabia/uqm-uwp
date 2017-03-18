@@ -227,12 +227,12 @@ TFB_ProcessEvents ()
 			case SDL_QUIT:
 				QuitPosted = 1;
 				break;
-//			case SDL_VIDEORESIZE:    /* User resized video mode */
-//				// TODO
-//				break;
-//			case SDL_VIDEOEXPOSE:    /* Screen needs to be redrawn */
-//				TFB_SwapBuffers (TFB_REDRAW_EXPOSE);
-//				break;
+			case SDL_WINDOWEVENT_RESIZED:    /* User resized video mode */
+				// TODO
+				break;
+			case SDL_WINDOWEVENT_EXPOSED:    /* Screen needs to be redrawn */
+				TFB_SwapBuffers (TFB_REDRAW_EXPOSE);
+				break;
 			default:
 				break;
 		}

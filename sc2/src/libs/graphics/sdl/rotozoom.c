@@ -935,7 +935,7 @@ SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smoo
     int dstwidth, dstheight;
     int is32bit;
     int i, src_converted;
-	int *ckey = NULL;
+	int ckey = NULL;
 
     /*
      * Sanity check 
@@ -1015,7 +1015,7 @@ SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smoo
 	 */
 	zoomSurfaceY(rz_src, rz_dst);
 	//TODO FIXME check the return.
-	int retval = SDL_GetColorKey(rz_src, ckey);
+	int retval = SDL_GetColorKey(rz_src, &ckey);
 	SDL_SetColorKey(rz_dst, SDL_TRUE, ckey);
     }
     /*

@@ -339,10 +339,10 @@ ProcessMouseEvent (const SDL_Event *e)
 static inline int
 is_numpad_char_event (const SDL_Event *Event)
 {
+	//TODO FIX ME: The way SDL works now, this might come through as TextInput events. Need to check with a little experiment.
  	return in_character_mode &&
 			(Event->type == SDL_KEYDOWN || Event->type == SDL_KEYUP) &&
 			(Event->key.keysym.mod & KMOD_NUM) &&  /* NumLock is ON */
-			//Event->key.keysym.unicode > 0 &&       /* Printable char */
 			Event->key.keysym.sym >= SDLK_KP_0 &&   /* Keypad key */
 			Event->key.keysym.sym <= SDLK_KP_XOR;
 }
@@ -357,6 +357,8 @@ ProcessInputEvent (const SDL_Event *Event)
 
 	// In character mode with NumLock on, numpad chars bypass VControl
 	// so that menu arrow events are not produced
+	//TODO FIX ME: should this be inside the below check for KEYDOWN OR KEYUP? the IF statement inside numpadchar appears to be such.
+	// made a bunch of stupid GOOFs acting hasty and coding late so put this one to bed for tonight.
 	if (!is_numpad_char_event (Event))
 		VControl_HandleEvent (Event);
 
@@ -371,13 +373,16 @@ ProcessInputEvent (const SDL_Event *Event)
 
 		if (Event->type == SDL_KEYDOWN)
 		{
+			if (Event->key.repeat) {
+				return;
+			}
+
 			int newtail;
 
 			kbdstate[k]++;
 			
 			newtail = (kbdtail + 1) & (KBDBUFSIZE - 1);
 			// ignore the char if the buffer is full
-			//TODO: there was formerlly Unicode code here that I was excised and replaced with k.
 			if (newtail != kbdhead)
 			{
 				kbdbuf[kbdtail] = k;

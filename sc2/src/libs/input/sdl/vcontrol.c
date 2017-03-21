@@ -392,6 +392,9 @@ event2gesture (SDL_Event *e, VCONTROL_GESTURE *g)
 	switch (e->type)
 	{
 	case SDL_KEYDOWN:
+		//TODO FIX ME: Not entirely convinced the below .repeat will occur in this context
+		if (e->key.repeat)
+			break;
 		g->type = VCONTROL_KEY;
 		g->gesture.key = e->key.keysym.scancode;
 		break;
@@ -944,6 +947,8 @@ VControl_HandleEvent (const SDL_Event *e)
 	switch (e->type)
 	{
 		case SDL_KEYDOWN:
+			if (e->key.repeat)
+				break;
 			VControl_ProcessKeyDown (e->key.keysym.scancode);
 			last_interesting = *e;
 			event_ready = 1;

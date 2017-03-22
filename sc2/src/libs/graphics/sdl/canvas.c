@@ -215,17 +215,20 @@ TFB_DrawCanvas_Image (TFB_Image *img, int x, int y, int scale,
 
 	NormalPal = ((SDL_Surface *)img->NormalImg)->format->palette;
 	// only set the new palette if it changed
-	if (NormalPal && cmap && img->colormap_version != cmap->version)
-		SDL_SetPaletteColors (img->NormalImg, cmap->palette->colors, 0, 256);
+	if (NormalPal && cmap && img->colormap_version != cmap->version) {
+		SDL_SetPaletteColors(NormalPal, cmap->palette->colors, 0, 256);
+	}
 
 	if (scale != 0 && scale != GSCALE_IDENTITY)
 	{
 		if (scaleMode == TFB_SCALE_TRILINEAR && img->MipmapImg)
 		{
+			SDL_Palette *mipmapPal = ((SDL_Surface *)img->MipmapImg)->format->palette;
+
 			// only set the new palette if it changed
 			if (TFB_DrawCanvas_IsPaletted (img->MipmapImg)
 					&& cmap && img->colormap_version != cmap->version)
-				SDL_SetPaletteColors(img->MipmapImg, cmap->palette->colors, 0, 256);
+				SDL_SetPaletteColors(mipmapPal, cmap->palette->colors, 0, 256);
 		}
 		else if (scaleMode == TFB_SCALE_TRILINEAR && !img->MipmapImg)
 		{	// Do bilinear scaling instead when mipmap is unavailable
@@ -239,7 +242,7 @@ TFB_DrawCanvas_Image (TFB_Image *img, int x, int y, int scale,
 			// We may only get a paletted scaled image if the source is
 			// paletted. Currently, all scaling targets are truecolor.
 			assert (NormalPal && NormalPal->colors);
-			SDL_SetPaletteColors (surf, NormalPal->colors, 0, NormalPal->ncolors);
+			SDL_SetPaletteColors (NormalPal, NormalPal->colors, 0, NormalPal->ncolors);
 		}
 
 		srcRect.x = 0;
@@ -449,7 +452,7 @@ TFB_DrawCanvas_FilledImage (TFB_Image *img, int x, int y, int scale,
 		for (i = 1; i < palette->ncolors; i++)
 			colors[i] = colors[0];
 
-		SDL_SetPaletteColors (surf, colors, 0, palette->ncolors);
+		SDL_SetPaletteColors (palette, colors, 0, palette->ncolors);
 		// reflect the change in *actual* image palette
 		img->colormap_version--;
 	}
@@ -1300,7 +1303,7 @@ TFB_DrawCanvas_Rescale_Trilinear (TFB_Canvas src_canvas, TFB_Canvas src_mipmap,
 	//TODO FIXME check ret value.
 	Uint32 ckey = NULL;
 	int retval = SDL_GetColorKey(dst, &ckey);
-	const int transparent = (dst->flags & SDL_TRUE) ?
+	const int transparent = (retval == 0) ?
 			ckey : 0;
 	const int alpha_threshold = dst_has_alpha ? 0 : 127;
 	// src v. mipmap importance factor

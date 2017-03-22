@@ -135,14 +135,14 @@ TFB_Pure_ConfigureVideo (int driver, int flags, int width, int height, int toggl
 	/* We'll ask for a 32bpp frame, but it doesn't really matter, because we've set
 	   SDL_ANYFORMAT */
 
-	SDL_Window *screen = SDL_CreateWindow("UQM",
+	SDL_MainWindow = SDL_CreateWindow("UQM",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		ScreenWidthActual, ScreenHeightActual,
 		videomode_flags);
 
-	SDL_Video = SDL_GetWindowSurface(screen);
-	SDL_ScreenRenderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_SOFTWARE);
+	SDL_Video = SDL_GetWindowSurface(SDL_MainWindow);
+	SDL_ScreenRenderer = SDL_CreateRenderer(SDL_MainWindow, -1, SDL_RENDERER_SOFTWARE);
 	if (SDL_Video == NULL)
 	{
 		log_add (log_Error, "Couldn't set %ix%i video mode: %s",
@@ -152,7 +152,7 @@ TFB_Pure_ConfigureVideo (int driver, int flags, int width, int height, int toggl
 	}
 	else
 	{
-		const SDL_Surface *video = SDL_GetWindowSurface(screen);
+		const SDL_Surface *video = SDL_GetWindowSurface(SDL_MainWindow);
 		const SDL_PixelFormat* fmt = video->format;
 
 		ScreenColorDepth = fmt->BitsPerPixel;
@@ -381,18 +381,14 @@ TFB_Pure_Scaled_Postprocess (void)
 	updated.h *= 2;
 	if (scalebuffer != SDL_Video)
 		SDL_BlitSurface (scalebuffer, &updated, SDL_Video, &updated);
-	//FIX ME - NOW
-	//SDL_UpdateRects (SDL_Video, 1, &updated);
-	SDL_RenderPresent(SDL_ScreenRenderer);
+
+	SDL_UpdateWindowSurfaceRects(SDL_MainWindow, &updated, 1);
 }
 
 static void
 TFB_Pure_Unscaled_Postprocess (void)
 {
-	//FIXME - NOW
-	//SDL_UpdateRect (SDL_Video, updated.x, updated.y,
-	//		updated.w, updated.h);
-	SDL_RenderPresent(SDL_ScreenRenderer);
+	SDL_UpdateWindowSurfaceRects(SDL_MainWindow, &updated, 1);
 }
 
 static void

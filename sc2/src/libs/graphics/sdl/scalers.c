@@ -24,7 +24,7 @@
 #ifdef USE_PLATFORM_ACCEL
 #	ifndef __APPLE__
 	// MacOS X framework has no SDL_cpuinfo.h for some reason
-#		include SDL_INCLUDE(SDL_cpuinfo.h)
+#		include SDL_INCLUDE(SDL2/SDL_cpuinfo.h)
 #	endif
 #	ifdef MMX_ASM
 #		include "2xscalers_mmx.h"
@@ -210,7 +210,7 @@ Scale_PrepPlatform (int flags, const SDL_PixelFormat* fmt)
 	// first match wins
 	// add better platform techs to the top
 #ifdef MMX_ASM
-	if ( (!force_platform && (SDL_HasSSE () || SDL_HasMMXExt ()))
+	if ( (!force_platform && (SDL_HasSSE () /*|| SDL_HasMMXExt ()*/))
 			|| force_platform == PLATFORM_SSE)
 	{
 		log_add (log_Info, "Screen scalers are using SSE/MMX-Ext/MMX code");

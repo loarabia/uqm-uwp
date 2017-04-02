@@ -107,6 +107,9 @@ Mike Melanson
 Mudrony Laszlo
 (PC/DOS content unpacking)
  
+Larry Olson
+(Windows 10 Update)
+
 Erol Otus
 (Splash screen)
  

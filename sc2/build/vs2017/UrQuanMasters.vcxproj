@@ -24,7 +24,9 @@
     <ProjectGuid>{9AF8F380-1E87-419D-9993-29891E83F39B}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
@@ -73,7 +75,6 @@
     <OutDir>.\Debug_NoAccel\</OutDir>
     <IntDir>.\Debug_NoAccel\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\loara\Documents\Code\vcpkg\packages\sdl2_x86-windows\bin;C:\Users\loara\Documents\Code\vcpkg\packages\openal-soft_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\libogg_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\libvorbis_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\zlib_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\sdl2-image_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\sdl2_x86-windows\lib;C:\Users\loara\Documents\Code\vcpkg\packages\sdl2_x86-windows\lib\manual-link;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -119,13 +120,13 @@
       <OutputFile>UrQuanMasters.bsc</OutputFile>
     </Bscmake>
     <Link>
+      <AdditionalLibraryDirectories>$(VcpkgRoot)debug\lib;$(VcpkgRoot)debug\lib\manual-link</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <!--<OutputFile>../../uqmdebug.exe</OutputFile>-->
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;zlibd.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,10 +145,6 @@
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
     </ClCompile>
-    <PostBuildEvent>
-      <Command>rebase -b 0x400000 -x . "../../uqm.exe"</Command>
-      <Message>Stripping debug info...</Message>
-    </PostBuildEvent>
     <Midl>
       <TypeLibraryName>.\Release\UrQuanMasters.tlb</TypeLibraryName>
     </Midl>
@@ -160,12 +157,12 @@
       <OutputFile>.\Release\UrQuanMasters.bsc</OutputFile>
     </Bscmake>
     <Link>
+      <AdditionalLibraryDirectories>$(VcpkgRoot)lib;$(VcpkgRoot)lib\manual-link</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <OutputFile>../../uqm.exe</OutputFile>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;zdll.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release NoAccel|Win32'">
@@ -184,10 +181,6 @@
       <ObjectFileName>.\Release_NoAccel\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release_NoAccel\</ProgramDataBaseFileName>
     </ClCompile>
-    <PostBuildEvent>
-      <Command>rebase -b 0x400000 -x . "../../uqm.exe"</Command>
-      <Message>Stripping debug info...</Message>
-    </PostBuildEvent>
     <Midl>
       <TypeLibraryName>.\Release_NoAccel\UrQuanMasters.tlb</TypeLibraryName>
     </Midl>
@@ -200,12 +193,12 @@
       <OutputFile>.\Release_NoAccel\UrQuanMasters.bsc</OutputFile>
     </Bscmake>
     <Link>
+      <AdditionalLibraryDirectories>$(VcpkgRoot)lib;$(VcpkgRoot)lib\manual-link</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <OutputFile>../../uqm.exe</OutputFile>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;zdll.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -237,13 +230,13 @@
       <OutputFile>UrQuanMasters.bsc</OutputFile>
     </Bscmake>
     <Link>
+      <AdditionalLibraryDirectories>$(VcpkgRoot)debug\lib;$(VcpkgRoot)debug\lib\manual-link</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <OutputFile>../../uqmdebug.exe</OutputFile>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;zdll.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;zlibd.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -1129,13 +1122,28 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\res\UrQuanMasters.rc">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug NoAccel|Win32'">\Users\loara\Documents\Code\sc2-uqm\sc2\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\Users\loara\Documents\Code\sc2-uqm\sc2\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release NoAccel|Win32'">\Users\loara\Documents\Code\sc2-uqm\sc2\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">\Users\loara\Documents\Code\sc2-uqm\sc2\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug NoAccel|Win32'">..\..\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release NoAccel|Win32'">..\..\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\src\res;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="AfterBuild" >
+    <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release NoAccel|Win32'">
+      <SourceFiles Include="$(VcpkgRoot)bin\*.dll" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      <SourceFiles Include="$(VcpkgRoot)bin\*.dll" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug NoAccel|Win32'">
+      <SourceFiles Include="$(VcpkgRoot)debug\bin\*.dll" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      <SourceFiles Include="$(VcpkgRoot)debug\bin\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

@@ -241,8 +241,9 @@ TFB_DrawCanvas_Image (TFB_Image *img, int x, int y, int scale,
 		{
 			// We may only get a paletted scaled image if the source is
 			// paletted. Currently, all scaling targets are truecolor.
+			SDL_Palette *surfPal = ((SDL_Surface *)surf)->format->palette;
 			assert (NormalPal && NormalPal->colors);
-			SDL_SetPaletteColors (NormalPal, NormalPal->colors, 0, NormalPal->ncolors);
+			SDL_SetPaletteColors (surfPal, NormalPal->colors, 0, NormalPal->ncolors);
 		}
 
 		srcRect.x = 0;

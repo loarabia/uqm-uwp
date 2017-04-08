@@ -20,3 +20,21 @@ Builds and playable as a Win32 project with some minor graphics glitches
     1. zlib
 1. Open the project under ./sc2/build/vs2017
 1. F5 in VS
+
+
+**Currently built against the below**
+
+Run `VCPkg.exe list` to see a dependency list like below:
+
+```
+libjpeg-turbo:x86-windows   1.5.1-1
+libogg:x86-windows          1.3.2
+libpng:x86-windows          1.6.28
+libvorbis:x86-windows       1.3.5-1-143
+libwebp:x86-windows         0.5.1-1
+openal-soft:x86-windows     1.17.2
+sdl2-image:x86-windows      2.0.1
+sdl2:x86-windows            2.0.5-2
+tiff:x86-windows            4.0.6-2
+zlib:x86-windows            1.2.11
+```

@@ -9,7 +9,7 @@ Builds and playable as a Win32 project with some minor graphics glitches
 * Fixed up assumptions about Windows lack of standards support that aren't valid in Windows 10
 
 **Getting Started**
-1. Install [Visual Studio 2017 Community] (https://www.visualstudio.com/downloads/)
+1. Install [Visual Studio 2017 Community](https://www.visualstudio.com/downloads/)
 1. Install MS [VCPkg](https://github.com/Microsoft/vcpkg)
 1. Install the following packages using vcpkg:
     1. SDL2

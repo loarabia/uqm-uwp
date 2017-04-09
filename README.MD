@@ -14,13 +14,8 @@ Builds and playable as a Win32 project with some minor graphics glitches
         * Universal Windows Platform development
         * Desktop development with C++ workloads checked
 1. Install MS [VCPkg](https://github.com/Microsoft/vcpkg)
-1. Install the following packages using vcpkg:
-    1. SDL2
-    1. SDL2-image
-    1. libvorbis
-    1. libogg
-    1. openal-soft
-    1. zlib
+1. Install the following dependencies using vcpkg 
+    * `./vcpkg.exe install SDL2 SDL2-image libvorbis libogg openal-soft zlib`
 1. Open the project under ./sc2/build/vs2017
 1. F5 in VS
 

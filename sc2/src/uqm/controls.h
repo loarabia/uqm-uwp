@@ -137,7 +137,7 @@ typedef struct textentry_state
 	BOOLEAN Initialized;
 	DWORD NextTime;    // use this for input frame timing
 	BOOLEAN Success;   // edit confirmed or canceled
-	UNICODE *CacheStr; // cached copy to revert immediate changes
+	UNICODE_CHAR *CacheStr; // cached copy to revert immediate changes
 	STRING JoyAlphaString; // joystick alphabet definition
 	BOOLEAN JoystickMode;  // TRUE when doing joystick input
 	BOOLEAN UpperRegister; // TRUE when entering Caps
@@ -146,9 +146,9 @@ typedef struct textentry_state
 	joy_char_t *JoyUpper;  // joystick upper register
 	joy_char_t *JoyLower;  // joystick lower register
 	int JoyRegLength;
-	UNICODE *InsPt;        // set to current pos of insertion point
+	UNICODE_CHAR *InsPt;        // set to current pos of insertion point
 	// these are public and must be set before calling DoTextEntry
-	UNICODE *BaseStr;  // set to string to edit
+	UNICODE_CHAR *BaseStr;  // set to string to edit
 	int CursorPos;     // set to current cursor pos in chars
 	int MaxSize;       // set to max size of edited string
 

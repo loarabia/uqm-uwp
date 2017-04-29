@@ -36,8 +36,8 @@ extern void FastForward_Smooth (void);
 extern void FastReverse_Page (void);
 extern void FastForward_Page (void);
 
-extern void SpliceTrack (UNICODE *filespec, UNICODE *textspec, UNICODE *TimeStamp, CallbackFunction cb);
-extern void SpliceMultiTrack (UNICODE *TrackNames[], UNICODE *TrackText);
+extern void SpliceTrack (UNICODE_CHAR *filespec, UNICODE_CHAR *textspec, UNICODE_CHAR *TimeStamp, CallbackFunction cb);
+extern void SpliceMultiTrack (UNICODE_CHAR *TrackNames[], UNICODE_CHAR *TrackText);
 
 extern int GetTrackPosition (int in_units);
 
@@ -45,8 +45,8 @@ typedef struct tfb_soundchunk *SUBTITLE_REF;
 
 extern SUBTITLE_REF GetFirstTrackSubtitle (void);
 extern SUBTITLE_REF GetNextTrackSubtitle (SUBTITLE_REF LastRef);
-extern const UNICODE *GetTrackSubtitleText (SUBTITLE_REF SubRef);
+extern const UNICODE_CHAR *GetTrackSubtitleText (SUBTITLE_REF SubRef);
 
-extern const UNICODE *GetTrackSubtitle (void);
+extern const UNICODE_CHAR *GetTrackSubtitle (void);
 
 #endif

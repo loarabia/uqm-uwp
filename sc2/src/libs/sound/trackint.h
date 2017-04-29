@@ -25,7 +25,7 @@ struct tfb_soundchunk
 	float start_time;           // relative time from track start
 	int tag_me;                 // set for chunks with subtitles
 	uint32 track_num;           // logical track #, comm code needs this
-	UNICODE *text;              // subtitle text
+	UNICODE_CHAR *text;              // subtitle text
 	CallbackFunction callback;  // comm callback, executed on chunk start
 	struct tfb_soundchunk *next;
 };

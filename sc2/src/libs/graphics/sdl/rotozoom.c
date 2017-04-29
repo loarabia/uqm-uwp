@@ -723,7 +723,7 @@ SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int s
 	    transformSurfaceY(rz_src, rz_dst, dstwidthhalf, dstheighthalf,
 			      (int) (sanglezoominv), (int) (canglezoominv));
 		//TODO FIXME check the return.
-		int* ckey;
+		int* ckey = NULL;
 		int retval = SDL_GetColorKey(rz_src, ckey);
 	    SDL_SetColorKey(rz_dst, SDL_TRUE | SDL_RLEACCEL, ckey);
 	}
@@ -794,7 +794,7 @@ SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int s
 	     */
 		zoomSurfaceY(rz_src, rz_dst);
 		//TODO FIXME check the return.
-		int* ckey;
+		int* ckey = NULL;
 		int retval = SDL_GetColorKey(rz_src, ckey);
 	    SDL_SetColorKey(rz_dst, SDL_TRUE | SDL_RLEACCEL, ckey);
 	}

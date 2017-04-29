@@ -31,11 +31,13 @@
 #include <stdlib.h>
 
 
-
+#if defined (NETPLAY)
 static inline BattleFrameCounter
 ChecksumBuffer_getCurrentFrameNr(void) {
 	return battleFrameCount;
 }
+#endif
+
 
 void
 ChecksumBuffer_init(ChecksumBuffer *cb, size_t delay, size_t interval) {
@@ -89,6 +91,7 @@ ChecksumBuffer_uninit(ChecksumBuffer *cb) {
 	}
 }
 
+#if defined (NETPLAY)
 // Returns the entry that would be used for the checksum for the specified
 // frame. Whether the entry is actually valid is not checked.
 static ChecksumEntry *
@@ -142,4 +145,4 @@ ChecksumBuffer_getChecksum(ChecksumBuffer *cb, BattleFrameCounter frameNr,
 	*result = entry->checksum;
 	return true;
 }
-
+#endif

@@ -56,7 +56,7 @@ DrawCrewFuelString (COORD y, SIZE state)
 }
 
 static void
-DrawShipNameString (UNICODE *pStr, COUNT CharCount, COORD y)
+DrawShipNameString (UNICODE_CHAR *pStr, COUNT CharCount, COORD y)
 {
 	TEXT Text;
 	FONT OldFont;
@@ -240,11 +240,11 @@ InitShipStatus (SHIP_INFO *SIPtr, STARSHIP *StarShipPtr, RECT *pClipRect)
 
 		locString = SetAbsStringTableIndex (SIPtr->race_strings, 1);
 		DrawShipNameString (
-				(UNICODE *)GetStringAddress (locString),
+				(UNICODE_CHAR *)GetStringAddress (locString),
 				GetStringLength (locString), y);
 
 		{
-			UNICODE buf[30];
+			UNICODE_CHAR buf[30];
 			TEXT Text;
 			FONT OldFont;
 
@@ -260,7 +260,7 @@ InitShipStatus (SHIP_INFO *SIPtr, STARSHIP *StarShipPtr, RECT *pClipRect)
 			{
 				locString = SetAbsStringTableIndex (SIPtr->race_strings,
 						StarShipPtr->captains_name_index);
-				Text.pStr = (UNICODE *)GetStringAddress (locString);
+				Text.pStr = (UNICODE_CHAR *)GetStringAddress (locString);
 				Text.CharCount = GetStringLength (locString);
 			}
 			Text.align = ALIGN_CENTER;

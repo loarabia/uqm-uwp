@@ -221,7 +221,7 @@ DrawRaceStrings (MENU_STATE *pMS, BYTE NewRaceItem)
 		TEXT t;
 		HFLEETINFO hStarShip;
 		FLEET_INFO *FleetPtr;
-		UNICODE buf[30];
+		UNICODE_CHAR buf[30];
 
 		hStarShip = GetAvailableRaceFromIndex (NewRaceItem);
 		NewRaceItem = GetIndexFromStarShip (&GLOBAL (avail_race_q),
@@ -269,7 +269,7 @@ ShowShipCrew (SHIP_FRAGMENT *StarShipPtr, const RECT *pRect)
 {
 	RECT r;
 	TEXT t;
-	UNICODE buf[80];
+	UNICODE_CHAR buf[80];
 	HFLEETINFO hTemplate;
 	FLEET_INFO *TemplatePtr;
 	COUNT maxCrewLevel;

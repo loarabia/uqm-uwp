@@ -15,7 +15,7 @@
  */
 
 #include "port.h"
-#include SDL_INCLUDE(SDL2/SDL.h)
+#include SDL_INCLUDE(SDL.h)
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>

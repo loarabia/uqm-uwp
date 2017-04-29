@@ -59,15 +59,15 @@ typedef enum {
 } CONVERSATION;
 
 extern LOCDATA CommData;
-extern UNICODE shared_phrase_buf[2048];
+extern UNICODE_CHAR shared_phrase_buf[2048];
 
 #define PLAYER_SAID(r,i) ((r)==(i))
 #define PHRASE_ENABLED(p) \
-		(*(UNICODE *)GetStringAddress ( \
+		(*(UNICODE_CHAR *)GetStringAddress ( \
 				SetAbsStringTableIndex (CommData.ConversationPhrases, (p)-1) \
 				) != '\0')
 #define DISABLE_PHRASE(p) \
-		(*(UNICODE *)GetStringAddress ( \
+		(*(UNICODE_CHAR *)GetStringAddress ( \
 				SetAbsStringTableIndex (CommData.ConversationPhrases, (p)-1) \
 				) = '\0')
 
@@ -79,7 +79,7 @@ typedef COUNT RESPONSE_REF;
 typedef void (*RESPONSE_FUNC) (RESPONSE_REF R);
 
 extern void DoResponsePhrase (RESPONSE_REF R, RESPONSE_FUNC
-		response_func, UNICODE *ContstructStr);
+		response_func, UNICODE_CHAR *ContstructStr);
 
 // The CallbackFunction is queued and executes synchronously
 // on the Starcon2Main thread
@@ -88,7 +88,7 @@ extern void NPCPhrase_cb (int index, CallbackFunction cb);
 extern void NPCPhrase_splice (int index);
 extern void NPCNumber (int number, const char *fmt);
 
-extern void construct_response (UNICODE *buf, int R /* promoted from
+extern void construct_response (UNICODE_CHAR *buf, int R /* promoted from
 		RESPONSE_REF */, ...);
 
 typedef enum {

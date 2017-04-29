@@ -225,6 +225,7 @@ prepareConfigDir (const char *configDirName) {
 	setenv("UQM_CONFIG_DIR", configDirName, 1);
 
 	// Create the path upto the config dir, if not already existing.
+	// TODO FIXME bypass this for now the dir exists
 	if (mkdirhier (configDirName) == -1)
 		exit (EXIT_FAILURE);
 

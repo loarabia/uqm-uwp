@@ -81,11 +81,11 @@ ClearReportArea (void)
 }
 
 static void
-MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
+MakeReport (SOUND ReadOutSounds, UNICODE_CHAR *pStr, COUNT StrLen)
 {
 	BYTE ButtonState;
 	int end_page_len;
-	UNICODE end_page_buf[200];
+	UNICODE_CHAR end_page_buf[200];
 	UniChar last_c = 0;
 	COUNT row_cells;
 	BOOLEAN Sleepy;
@@ -110,8 +110,8 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
 	while (StrLen)
 	{
 		COUNT col_cells;
-		const UNICODE *pLastStr;
-		const UNICODE *pNextStr;
+		const UNICODE_CHAR *pLastStr;
+		const UNICODE_CHAR *pNextStr;
 		COUNT lf_pos;
 
 		pLastStr = t.pStr;
@@ -137,7 +137,7 @@ MakeReport (SOUND ReadOutSounds, UNICODE *pStr, COUNT StrLen)
 		do
 		{
 			COUNT word_chars;
-			const UNICODE *pStr;
+			const UNICODE_CHAR *pStr;
 			UniChar c;
  
 			pStr = t.pStr;
@@ -250,7 +250,7 @@ DoDiscoveryReport (SOUND ReadOutSounds)
 			OldFontEffect = SetContextFontEffect (NULL);
 
 		MakeReport (ReadOutSounds,
-			(UNICODE *)GetStringAddress (pSolarSysState->SysInfo.PlanetInfo.DiscoveryString),
+			(UNICODE_CHAR *)GetStringAddress (pSolarSysState->SysInfo.PlanetInfo.DiscoveryString),
 			GetStringLength (pSolarSysState->SysInfo.PlanetInfo.DiscoveryString));
 		
 		SetContextFontEffect (OldFontEffect);

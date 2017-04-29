@@ -18,7 +18,7 @@
 
 #include "alarm.h"
 
-#include SDL_INCLUDE(SDL2/SDL.h)
+#include SDL_INCLUDE(SDL.h)
 #include "libs/heap.h"
 
 #include <assert.h>

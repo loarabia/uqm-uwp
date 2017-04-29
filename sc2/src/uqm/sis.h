@@ -149,9 +149,9 @@ typedef struct
 
 	COUNT ElementAmounts[NUM_ELEMENT_CATEGORIES];
 
-	UNICODE ShipName[SIS_NAME_SIZE];
-	UNICODE CommanderName[SIS_NAME_SIZE];
-	UNICODE PlanetName[SIS_NAME_SIZE];
+	UNICODE_CHAR ShipName[SIS_NAME_SIZE];
+	UNICODE_CHAR CommanderName[SIS_NAME_SIZE];
+	UNICODE_CHAR PlanetName[SIS_NAME_SIZE];
 } SIS_STATE;
 
 #define OVERRIDE_LANDER_FLAGS (1 << 7)
@@ -170,7 +170,7 @@ extern void ContinueFlash (void);
 #define SFR_MENU_3DO ((RECT*)~0L)
 #define SFR_MENU_ANY ((RECT*)~1L)
 extern void DrawHyperCoords (POINT puniverse);
-extern void DrawSISTitle (UNICODE *pStr);
+extern void DrawSISTitle (UNICODE_CHAR *pStr);
 
 // Flags for DrawSISMessageEx (may be OR'ed):
 #define DSME_NONE     0
@@ -183,16 +183,16 @@ extern void DrawSISTitle (UNICODE *pStr);
 		// when editing in the message field.
 #define DSME_MYCOLOR  (1 << 3)
 		// Use the current foreground color, instead of the default.
-extern BOOLEAN DrawSISMessageEx (const UNICODE *pStr, SIZE CurPos,
+extern BOOLEAN DrawSISMessageEx (const UNICODE_CHAR *pStr, SIZE CurPos,
 		SIZE ExPos, COUNT flags);
 
-extern void DrawSISMessage (const UNICODE *pStr);
+extern void DrawSISMessage (const UNICODE_CHAR *pStr);
 extern void DateToString (char *buf, size_t bufLen,
 		BYTE month_index, BYTE day_index, COUNT year_index);
 
 // Returned RECT is relative to the StatusContext
 extern void GetStatusMessageRect (RECT *r);
-extern void DrawStatusMessage (const UNICODE *pStr);
+extern void DrawStatusMessage (const UNICODE_CHAR *pStr);
 typedef enum
 {
 	SMM_UNDEFINED = 0,

@@ -87,10 +87,13 @@ void crc_processState(crc_State *state);
 
 void initChecksumBuffers(void);
 void uninitChecksumBuffers(void);
+#if defined (NETPLAY)
+
 void addLocalChecksum(BattleFrameCounter frameNr, Checksum checksum);
 void addRemoteChecksum(NetConnection *conn, BattleFrameCounter frameNr,
 		Checksum checksum);
 bool verifyChecksums(BattleFrameCounter frameNr);
+#endif
 
 #if defined(__cplusplus)
 }

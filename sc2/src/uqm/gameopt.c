@@ -113,7 +113,7 @@ enum
 static void
 FeedbackSetting (BYTE which_setting)
 {
-	UNICODE buf[128];
+	UNICODE_CHAR buf[128];
 	const char *tmpstr;
 
 	buf[0] = '\0';
@@ -194,7 +194,7 @@ static const RECT shipNameRect = {
 
 
 static BOOLEAN
-DrawNameString (bool nameCaptain, UNICODE *Str, COUNT CursorPos,
+DrawNameString (bool nameCaptain, UNICODE_CHAR *Str, COUNT CursorPos,
 		COUNT state)
 {
 	RECT r;
@@ -313,9 +313,9 @@ OnNameChange (TEXTENTRY_STATE *pTES)
 static void
 NameCaptainOrShip (bool nameCaptain)
 {
-	UNICODE buf[MAX_NAME_SIZE] = "";
+	UNICODE_CHAR buf[MAX_NAME_SIZE] = "";
 	TEXTENTRY_STATE tes;
-	UNICODE *Setting;
+	UNICODE_CHAR *Setting;
 
 	SetFlashRect (nameCaptain ? &captainNameRect : &shipNameRect);
 
@@ -356,13 +356,13 @@ NameCaptainOrShip (bool nameCaptain)
 }
 
 static BOOLEAN
-DrawSaveNameString (UNICODE *Str, COUNT CursorPos, COUNT state, COUNT gameIndex)
+DrawSaveNameString (UNICODE_CHAR *Str, COUNT CursorPos, COUNT state, COUNT gameIndex)
 {
 	RECT r;
 	TEXT lf;
 	Color BackGround, ForeGround;
 	FONT Font;
-	UNICODE fullStr[256], dateStr[80];
+	UNICODE_CHAR fullStr[256], dateStr[80];
 
 	DateToString (dateStr, sizeof dateStr, GLOBAL(GameClock.month_index),
 			GLOBAL(GameClock.day_index), GLOBAL(GameClock.year_index));
@@ -485,7 +485,7 @@ OnSaveNameChange (TEXTENTRY_STATE *pTES)
 }
 
 static BOOLEAN
-NameSaveGame (COUNT gameIndex, UNICODE *buf)
+NameSaveGame (COUNT gameIndex, UNICODE_CHAR *buf)
 {
 	TEXTENTRY_STATE tes;
 	COUNT CursPos = strlen(buf);
@@ -657,7 +657,7 @@ DrawSavegameCargo (SIS_STATE *sisState)
 	COUNT i;
 	STAMP s;
 	TEXT t;
-	UNICODE buf[40];
+	UNICODE_CHAR buf[40];
 	static const Color cargo_color[] =
 	{
 		BUILD_COLOR (MAKE_RGB15_INIT (0x02, 0x0E, 0x13), 0x00),
@@ -754,7 +754,7 @@ DrawSavegameSummary (PICK_GAME_STATE *pickState, COUNT gameIndex)
 		QUEUE player_q;
 		CONTEXT OldContext;
 		SIS_STATE SaveSS;
-		UNICODE buf[256];
+		UNICODE_CHAR buf[256];
 		POINT starPt;
 
 		// Save the states because we will hack them
@@ -942,8 +942,8 @@ DrawGameSelection (PICK_GAME_STATE *pickState, COUNT selSlot)
 	TEXT t;
 	COUNT i;
 	COUNT curSlot;
-	UNICODE buf[256];
-	UNICODE buf2[80];
+	UNICODE_CHAR buf[256];
+	UNICODE_CHAR buf2[80];
 
 	BatchGraphics ();
 
@@ -1111,7 +1111,7 @@ static BOOLEAN
 SaveLoadGame (PICK_GAME_STATE *pickState, COUNT gameIndex, BOOLEAN *canceled_by_user)
 {
 	SUMMARY_DESC *desc = pickState->summary + gameIndex;
-	UNICODE nameBuf[256];
+	UNICODE_CHAR nameBuf[256];
 	STAMP saveStamp;
 	BOOLEAN success;
 

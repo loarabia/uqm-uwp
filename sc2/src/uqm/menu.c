@@ -69,8 +69,8 @@ DrawPCMenuFrame (RECT *r)
 #define ALT_MANIFEST 0x80
 #define ALT_EXIT_MANIFEST 0x81
 
-static UNICODE pm_crew_str[128];
-static UNICODE pm_fuel_str[128];
+static UNICODE_CHAR pm_crew_str[128];
+static UNICODE_CHAR pm_fuel_str[128];
 
 /* Actually display the menu text */
 static void
@@ -82,7 +82,7 @@ DrawPCMenu (BYTE beg_index, BYTE end_index, BYTE NewState, BYTE hilite, RECT *r)
 	int num_items;
 	FONT OldFont;
 	TEXT t;
-	UNICODE buf[256];
+	UNICODE_CHAR buf[256];
 
 	pos = beg_index + NewState;
 	num_items = 1 + end_index - beg_index;
@@ -570,7 +570,7 @@ DrawMenuStateStrings (BYTE beg_index, SWORD NewState)
 		switch (beg_index + NewState)
 		{
 			TEXT t;
-			UNICODE buf[20];
+			UNICODE_CHAR buf[20];
 
 			case PM_CREW:
 				t.baseline.x = s.origin.x + RADAR_WIDTH - 2;

@@ -811,8 +811,8 @@ dumpSystemCallback (const STAR_DESC *star, const SOLARSYS_STATE *system,
 void
 dumpSystem (FILE *out, const STAR_DESC *star, const SOLARSYS_STATE *system)
 {
-	UNICODE name[256];
-	UNICODE buf[40];
+	UNICODE_CHAR name[256];
+	UNICODE_CHAR buf[40];
 
 	GetClusterName (star, name);
 	snprintf (buf, sizeof buf, "%s %s",
@@ -1218,7 +1218,7 @@ static void
 tallySystemPostCallback (const STAR_DESC *star, const SOLARSYS_STATE *system,
 		void *arg)
 {
-	UNICODE name[256];
+	UNICODE_CHAR name[256];
 	TallyResourcesArg *tallyResourcesArg = (TallyResourcesArg *) arg;
 	FILE *out = tallyResourcesArg->out;
 
@@ -1334,7 +1334,7 @@ dumpPlanetType (FILE *out, int index, const PlanetFrame *planetType)
 const char *
 planetTypeString (int typeIndex)
 {
-	static UNICODE typeStr[40];
+	static UNICODE_CHAR typeStr[40];
 
 	if (typeIndex >= FIRST_GAS_GIANT)
 	{

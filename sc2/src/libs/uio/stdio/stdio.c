@@ -110,7 +110,7 @@ stdio_close(uio_Handle *handle) {
 	uio_free(handle->native);
 	
 	while (1) {
-		result = close(fd);
+		result = _close(fd);
 		if (result == 0)
 			break;
 		if (errno != EINTR) {
@@ -343,7 +343,7 @@ stdio_unlink(uio_PDirHandle *pDirHandle, const char *name) {
 		return -1;
 	}
 	
-	result = unlink(path);
+	result = _unlink(path);
 	if (result == -1) {
 		int savedErrno = errno;
 		uio_free(path);

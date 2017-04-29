@@ -32,7 +32,7 @@ extern STAR_DESC *star_array;
 extern STAR_DESC* FindStar (STAR_DESC *pLastStar, POINT *puniverse,
 		SIZE xbounds, SIZE ybounds);
 
-extern void GetClusterName (const STAR_DESC *pSD, UNICODE buf[]);
+extern void GetClusterName (const STAR_DESC *pSD, UNICODE_CHAR buf[]);
 
 #if defined(__cplusplus)
 }

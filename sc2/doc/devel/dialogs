@@ -3,7 +3,7 @@ This file describes how the conversation system works.
 Functions:
 
 DoResponsePhrase(RESPONSE_REF R, RESPONSE_FUNC response_func,
-		UNICODE *ConstructStr)
+		UNICODE_CHAR *ConstructStr)
 	Adds a line to the list of remarks the player may choose from.
 	R - The index for the line in the .txt dialog file.
     response_func - the function where to continue the dialog if this
@@ -27,13 +27,13 @@ DoResponsePhrase(RESPONSE_REF R, RESPONSE_FUNC response_func,
 Response(RESPONSE_REF R, RESPONSE_FUNC response_func)
 	Macro that calls DoResponsePhrase() with 0 for ConstructStr.
 
-construct_response(UNICODE *buf, int R, ...)
+construct_response(UNICODE_CHAR *buf, int R, ...)
 	Concatenates strings from a dialog .txt file with strings from
 	the source. The arguments after *buf are alternatingly an int R,
-	and a UNICODE * str, until either R is -1, or str is NULL.
+	and a UNICODE_CHAR * str, until either R is -1, or str is NULL.
 	buf - the destination
 	R   - The index for the line in the .txt dialog file.
-	str - A UNICODE * string.
+	str - A UNICODE_CHAR * string.
 
 NPCPhrase_cb(int index, TFB_TrackCB cb)
 	Display the NPC speech with identifier 'index' (and play the

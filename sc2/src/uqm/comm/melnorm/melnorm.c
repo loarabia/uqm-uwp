@@ -1183,7 +1183,9 @@ DoSell (RESPONSE_REF R)
 			GET_GAME_STATE (RAINBOW_WORLD0),
 			GET_GAME_STATE (RAINBOW_WORLD1)
 			);
-	num_new_rainbows = (BYTE)(-GET_GAME_STATE (MELNORME_RAINBOW_COUNT));
+	//TODO FIXME compile a small app w/ unsiged and then apply a -
+	//num_new_rainbows = (BYTE)(-GET_GAME_STATE (MELNORME_RAINBOW_COUNT));
+	num_new_rainbows = (BYTE)(GET_GAME_STATE(MELNORME_RAINBOW_COUNT));
 	while (rainbow_mask)
 	{
 		if (rainbow_mask & 1)
@@ -1313,7 +1315,10 @@ NatureOfConversation (RESPONSE_REF R)
 			GET_GAME_STATE (RAINBOW_WORLD0),
 			GET_GAME_STATE (RAINBOW_WORLD1)
 			);
-	num_new_rainbows = (BYTE)(-GET_GAME_STATE (MELNORME_RAINBOW_COUNT));
+	//TODO FIXME compile a small app w/ unsiged and then apply a -
+	//num_new_rainbows = (BYTE)(-GET_GAME_STATE (MELNORME_RAINBOW_COUNT));
+	num_new_rainbows = (BYTE)(GET_GAME_STATE(MELNORME_RAINBOW_COUNT));
+
 	while (rainbow_mask)
 	{
 		if (rainbow_mask & 1)

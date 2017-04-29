@@ -135,7 +135,7 @@ DrawBattleCrewAmount (SHIP_INFO *ShipInfoPtr, COORD y_offs)
 #define MAX_CREW_DIGITS 3
 	RECT r;
 	TEXT t;
-	UNICODE buf[40];
+	UNICODE_CHAR buf[40];
 
 	t.baseline.x = BATTLE_CREW_X + 2;
 	if (optWhichMenu == OPT_PC)

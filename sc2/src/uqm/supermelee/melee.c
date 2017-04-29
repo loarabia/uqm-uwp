@@ -449,7 +449,7 @@ DrawFleetValue (MELEE_STATE *pMS, COUNT side, COUNT HiLiteState)
 {
 	RECT r;
 	TEXT rtText;
-	UNICODE buf[30];
+	UNICODE_CHAR buf[30];
 	COUNT fleetValue;
 
 	GetFleetValueRect (side ,&r);

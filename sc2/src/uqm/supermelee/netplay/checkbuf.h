@@ -65,10 +65,12 @@ struct ChecksumBuffer {
 
 void ChecksumBuffer_init(ChecksumBuffer *cb, size_t delay, size_t interval);
 void ChecksumBuffer_uninit(ChecksumBuffer *cb);
+#if defined (NETPLAY)
 bool ChecksumBuffer_addChecksum(ChecksumBuffer *cb,
 		BattleFrameCounter frameNr, Checksum checksum);
 bool ChecksumBuffer_getChecksum(ChecksumBuffer *cb,
 		BattleFrameCounter frameNr, Checksum *result);
+#endif
 
 #if defined(__cplusplus)
 }

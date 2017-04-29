@@ -29,7 +29,7 @@
 #include <stddef.h>
 #include <assert.h>
 
-static int NPCNumberPhrase (int number, const char *fmt, UNICODE **ptrack);
+static int NPCNumberPhrase (int number, const char *fmt, UNICODE_CHAR **ptrack);
 
 // The CallbackFunction is queued and executes synchronously
 // on the Starcon2Main thread
@@ -44,7 +44,7 @@ NPCPhrase_cb (int index, CallbackFunction cb)
 	if (index == 0)
 		return;
 
-	pStr = (UNICODE *)GetStringAddress (
+	pStr = (UNICODE_CHAR *)GetStringAddress (
 			SetAbsStringTableIndex (CommData.ConversationPhrases, index - 1));
 	pClip = GetStringSoundClip (
 			SetAbsStringTableIndex (CommData.ConversationPhrases, index - 1));
@@ -67,14 +67,14 @@ NPCPhrase_cb (int index, CallbackFunction cb)
 void
 NPCPhrase_splice (int index)
 {
-	UNICODE *pStr;
+	UNICODE_CHAR *pStr;
 	void *pClip;
 
 	assert (index >= 0);
 	if (index == 0)
 		return;
 
-	pStr = (UNICODE *)GetStringAddress (
+	pStr = (UNICODE_CHAR *)GetStringAddress (
 			SetAbsStringTableIndex (CommData.ConversationPhrases, index - 1));
 	pClip = GetStringSoundClip (
 			SetAbsStringTableIndex (CommData.ConversationPhrases, index - 1));
@@ -85,7 +85,7 @@ NPCPhrase_splice (int index)
 	}
 	else
 	{	// Splicing in some voice
-		UNICODE *tracks[] = {NULL, NULL};
+		UNICODE_CHAR *tracks[] = {NULL, NULL};
 
 		tracks[0] = pClip;
 		SpliceMultiTrack (tracks, pStr);
@@ -95,7 +95,7 @@ NPCPhrase_splice (int index)
 void
 NPCNumber (int number, const char *fmt)
 {
-	UNICODE buf[32];
+	UNICODE_CHAR buf[32];
 
 	if (!fmt)
 		fmt = "%d";
@@ -112,15 +112,15 @@ NPCNumber (int number, const char *fmt)
 }
 
 static int
-NPCNumberPhrase (int number, const char *fmt, UNICODE **ptrack)
+NPCNumberPhrase (int number, const char *fmt, UNICODE_CHAR **ptrack)
 {
 #define MAX_NUMBER_TRACKS 20
 	NUMBER_SPEECH speech = CommData.AlienNumberSpeech;
 	COUNT i;
 	int queued = 0;
 	int toplevel = 0;
-	UNICODE *TrackNames[MAX_NUMBER_TRACKS];
-	UNICODE numbuf[60];
+	UNICODE_CHAR *TrackNames[MAX_NUMBER_TRACKS];
+	UNICODE_CHAR numbuf[60];
 	const SPEECH_DIGIT* dig = NULL;
 
 	if (!speech)
@@ -213,10 +213,10 @@ NPCNumberPhrase (int number, const char *fmt, UNICODE **ptrack)
 }
 
 void
-construct_response (UNICODE *buf, int R /* promoted from RESPONSE_REF */, ...)
+construct_response (UNICODE_CHAR *buf, int R /* promoted from RESPONSE_REF */, ...)
 {
-	UNICODE *buf_start = buf;
-	UNICODE *name;
+	UNICODE_CHAR *buf_start = buf;
+	UNICODE_CHAR *name;
 	va_list vlist;
 	
 	va_start (vlist, R);
@@ -228,13 +228,13 @@ construct_response (UNICODE *buf, int R /* promoted from RESPONSE_REF */, ...)
 		
 		S = SetAbsStringTableIndex (CommData.ConversationPhrases, R - 1);
 		
-		strcpy (buf, (UNICODE *)GetStringAddress (S));
+		strcpy (buf, (UNICODE_CHAR *)GetStringAddress (S));
 		
 		len = strlen (buf);
 		
 		buf += len;
 		
-		name = va_arg (vlist, UNICODE *);
+		name = va_arg (vlist, UNICODE_CHAR *);
 		
 		if (name)
 		{

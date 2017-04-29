@@ -172,7 +172,7 @@ DrawFileString (const MeleeTeam *team, const POINT *origin,
 	// Print the value of the fleet
 	{
 		TEXT Text;
-		UNICODE buf[60];
+		UNICODE_CHAR buf[60];
 
 		sprintf (buf, "%u", MeleeTeam_getValue (team));
 		Text.baseline = *origin;

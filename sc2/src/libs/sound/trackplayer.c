@@ -289,14 +289,14 @@ OnBufferTag (TFB_SoundSample* sample, TFB_SoundTag* tag)
 // Parse the timestamps string into an int array.
 // Rerturns number of timestamps parsed.
 static int
-GetTimeStamps (UNICODE *TimeStamps, sint32 *time_stamps)
+GetTimeStamps (UNICODE_CHAR *TimeStamps, sint32 *time_stamps)
 {
 	int pos;
 	int num = 0;
 	
 	while (*TimeStamps && (pos = strcspn (TimeStamps, ",\r\n")))
 	{
-		UNICODE valStr[32];
+		UNICODE_CHAR valStr[32];
 		uint32 val;
 		
 		memcpy (valStr, TimeStamps, pos);
@@ -317,7 +317,7 @@ GetTimeStamps (UNICODE *TimeStamps, sint32 *time_stamps)
 #define TEXT_SPEED 80
 // Returns number of parsed pages
 static int
-SplitSubPages (UNICODE *text, UNICODE *pages[], sint32 timestamp[], int size)
+SplitSubPages (UNICODE_CHAR *text, UNICODE_CHAR *pages[], sint32 timestamp[], int size)
 {
 	int lead_ellips = 0;
 	COUNT page;
@@ -333,7 +333,7 @@ SplitSubPages (UNICODE *text, UNICODE *pages[], sint32 timestamp[], int size)
 		//   are used exclusively
 		aft_ellips = 3 * (text[pos] != '\0' && pos > 0 &&
 				!ispunct (text[pos - 1]) && !isspace (text[pos - 1]));
-		pages[page] = HMalloc (sizeof (UNICODE) *
+		pages[page] = HMalloc (sizeof (UNICODE_CHAR) *
 				(lead_ellips + pos + aft_ellips + 1));
 		if (lead_ellips)
 			strcpy (pages[page], "..");
@@ -358,7 +358,7 @@ SplitSubPages (UNICODE *text, UNICODE *pages[], sint32 timestamp[], int size)
 // May only be called after at least one SpliceTrack(). This is a limitation
 // for the sake of timestamps, but it does not have to be so.
 void
-SpliceMultiTrack (UNICODE *TrackNames[], UNICODE *TrackText)
+SpliceMultiTrack (UNICODE_CHAR *TrackNames[], UNICODE_CHAR *TrackText)
 {
 #define MAX_MULTI_TRACKS  20
 #define MAX_MULTI_BUFFERS 100
@@ -422,12 +422,12 @@ SpliceMultiTrack (UNICODE *TrackNames[], UNICODE *TrackText)
 
 // XXX: This code and the entire trackplayer are begging to be overhauled
 void
-SpliceTrack (UNICODE *TrackName, UNICODE *TrackText, UNICODE *TimeStamp, CallbackFunction cb)
+SpliceTrack (UNICODE_CHAR *TrackName, UNICODE_CHAR *TrackText, UNICODE_CHAR *TimeStamp, CallbackFunction cb)
 {
-	static UNICODE last_track_name[128] = "";
+	static UNICODE_CHAR last_track_name[128] = "";
 	static unsigned long dec_offset = 0;
 #define MAX_PAGES 50
-	UNICODE *pages[MAX_PAGES];
+	UNICODE_CHAR *pages[MAX_PAGES];
 	sint32 time_stamps[MAX_PAGES];
 	int num_pages;
 	int page;
@@ -844,7 +844,7 @@ GetNextTrackSubtitle (SUBTITLE_REF LastRef)
 }
 
 // External access to the chunk subtitles
-const UNICODE *
+const UNICODE_CHAR *
 GetTrackSubtitleText (SUBTITLE_REF SubRef)
 {
 	if (!SubRef)
@@ -855,10 +855,10 @@ GetTrackSubtitleText (SUBTITLE_REF SubRef)
 
 // External access to currently active subtitle text
 // Returns NULL is none is active
-const UNICODE *
+const UNICODE_CHAR *
 GetTrackSubtitle (void)
 {
-	const UNICODE *cur_sub = NULL;
+	const UNICODE_CHAR *cur_sub = NULL;
 
 	if (!sound_sample)
 		return NULL; // not playing anything

@@ -52,7 +52,7 @@ ShowRemainingCapacity (void)
 	RECT r;
 	TEXT t;
 	CONTEXT OldContext;
-	UNICODE buf[40];
+	UNICODE_CHAR buf[40];
 
 	OldContext = SetContext (StatusContext);
 	SetContextFont (TinyFont);
@@ -88,7 +88,7 @@ DrawElementAmount (COUNT element, bool selected)
 {
 	RECT r;
 	TEXT t;
-	UNICODE buf[40];
+	UNICODE_CHAR buf[40];
 
 	r.corner.x = ELEMENT_SEL_ORG_X;
 	r.extent.width = ELEMENT_SEL_WIDTH;

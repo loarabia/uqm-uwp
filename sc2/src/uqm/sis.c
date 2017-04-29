@@ -41,7 +41,7 @@
 
 static StatMsgMode curMsgMode = SMM_DEFAULT;
 
-static const UNICODE *describeWeapon (BYTE moduleType);
+static const UNICODE_CHAR *describeWeapon (BYTE moduleType);
 
 void
 RepairSISBorder (void)
@@ -123,7 +123,7 @@ ClearSISRect (BYTE ClearFlags)
 // right hand side, containing the coordinates in HyperSpace, or the planet
 // name in IP.
 void
-DrawSISTitle (UNICODE *pStr)
+DrawSISTitle (UNICODE_CHAR *pStr)
 {
 	TEXT t;
 	CONTEXT OldContext;
@@ -164,7 +164,7 @@ DrawSISTitle (UNICODE *pStr)
 void
 DrawHyperCoords (POINT universe)
 {
-	UNICODE buf[100];
+	UNICODE_CHAR buf[100];
 
 	snprintf (buf, sizeof buf, "%03u.%01u : %03u.%01u",
 			universe.x / 10, universe.x % 10,
@@ -174,16 +174,16 @@ DrawHyperCoords (POINT universe)
 }
 
 void
-DrawSISMessage (const UNICODE *pStr)
+DrawSISMessage (const UNICODE_CHAR *pStr)
 {
 	DrawSISMessageEx (pStr, -1, -1, DSME_NONE);
 }
 
 // See sis.h for the allowed flags.
 BOOLEAN
-DrawSISMessageEx (const UNICODE *pStr, SIZE CurPos, SIZE ExPos, COUNT flags)
+DrawSISMessageEx (const UNICODE_CHAR *pStr, SIZE CurPos, SIZE ExPos, COUNT flags)
 {
-	UNICODE buf[256];
+	UNICODE_CHAR buf[256];
 	CONTEXT OldContext;
 	TEXT t;
 	RECT r;
@@ -362,12 +362,12 @@ GetStatusMessageRect (RECT *r)
 }
 
 void
-DrawStatusMessage (const UNICODE *pStr)
+DrawStatusMessage (const UNICODE_CHAR *pStr)
 {
 	RECT r;
 	RECT ctxRect;
 	TEXT t;
-	UNICODE buf[128];
+	UNICODE_CHAR buf[128];
 	CONTEXT OldContext;
 
 	OldContext = SetContext (StatusContext);
@@ -485,7 +485,7 @@ DrawFlagshipName (BOOLEAN InStatusArea)
 	Color OldColor;
 	CONTEXT OldContext;
 	FRAME OldFontEffect;
-	UNICODE buf[250];
+	UNICODE_CHAR buf[250];
 
 	if (InStatusArea)
 	{
@@ -513,7 +513,7 @@ DrawFlagshipName (BOOLEAN InStatusArea)
 		snprintf (buf, sizeof buf, "%s %s",
 				GAME_STRING (NAMING_STRING_BASE + 1), GLOBAL_SIS (ShipName));
 		// XXX: this will not work with UTF-8 strings
-		strupr (buf);
+		_strupr (buf);
 	}
 	OldFontEffect = SetContextFontEffect (NULL);
 	OldColor = SetContextForeGroundColor (FLAGSHIP_NAME_BACKGROUND_COLOR);
@@ -546,7 +546,7 @@ DrawFlagshipStats (void)
 	Color OldColor;
 	FRAME OldFontEffect;
 	CONTEXT OldContext;
-	UNICODE buf[128];
+	UNICODE_CHAR buf[128];
 	SIZE leading;
 	BYTE i;
 	BYTE energy_regeneration, energy_wait, turn_wait;
@@ -698,7 +698,7 @@ DrawFlagshipStats (void)
 	SetContext (OldContext);
 }
 
-static const UNICODE *
+static const UNICODE_CHAR *
 describeWeapon (BYTE moduleType)
 {
 	switch (moduleType)
@@ -1002,7 +1002,7 @@ DeltaSISGauges_crewDelta (SIZE crew_delta)
 
 	{
 		TEXT t;
-		UNICODE buf[60];
+		UNICODE_CHAR buf[60];
 		RECT r;
 
 		snprintf (buf, sizeof buf, "%u", GLOBAL_SIS (CrewEnlisted));
@@ -1058,7 +1058,7 @@ DeltaSISGauges_fuelDelta (SIZE fuel_delta)
 	if (new_coarse_fuel != old_coarse_fuel)
 	{
 		TEXT t;
-		UNICODE buf[60];
+		UNICODE_CHAR buf[60];
 		RECT r;
 
 		snprintf (buf, sizeof buf, "%u", new_coarse_fuel);

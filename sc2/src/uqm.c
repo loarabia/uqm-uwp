@@ -59,9 +59,10 @@
 
 
 #if defined (GFXMODULE_SDL)
-#	include SDL_INCLUDE(SDL2/SDL.h)
+#	include SDL_INCLUDE(SDL.h)
 			// Including this is actually necessary on OSX.
 #endif
+
 
 struct bool_option
 {
@@ -214,6 +215,7 @@ static void saveError (const char *fmt, ...)
 
 static int parseOptions (int argc, char *argv[],
 		struct options_struct *options);
+
 static void getUserConfigOptions (struct options_struct *options);
 static void usage (FILE *out, const struct options_struct *defaultOptions);
 static int parseIntOption (const char *str, int *result,
@@ -274,7 +276,10 @@ main (int argc, char *argv[])
 	// NOTE: we cannot use the logging facility yet because we may have to
 	//   log to a file, and we'll only get the log file name after parsing
 	//   the options.
-	optionsResult = parseOptions (argc, argv, &options);
+	//NOTE: FOR UWP trying the defaults
+	//optionsResult = parseOptions (argc, argv, &options);
+	options = defaults;
+	optionsResult = EXIT_SUCCESS;
 
 	log_init (15);
 

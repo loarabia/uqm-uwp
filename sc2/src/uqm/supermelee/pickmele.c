@@ -442,7 +442,7 @@ UpdatePickMeleeFleetValue (FRAME frame, COUNT which_player)
 	COUNT value;
 	RECT r;
 	TEXT t;
-	UNICODE buf[40];
+	UNICODE_CHAR buf[40];
 	
 	value = GetRaceQueueValue (&race_q[which_player]);
 
@@ -520,7 +520,7 @@ FillPickMeleeFrame (MeleeSetup *setup)
 		RECT r;
 		TEXT t;
 		STAMP s;
-		UNICODE buf[30];
+		UNICODE_CHAR buf[30];
 		FleetShipIndex index;
 
 		sideI = GetPlayerOrder (i);

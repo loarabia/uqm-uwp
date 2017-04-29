@@ -309,8 +309,8 @@ extern void DeltaTopography (COUNT num_iterations, SBYTE *DepthArray,
 
 extern void DrawPlanetSurfaceBorder (void);
 
-extern UNICODE* GetNamedPlanetaryBody (void);
-extern void GetPlanetOrMoonName (UNICODE *buf, COUNT bufsize);
+extern UNICODE_CHAR* GetNamedPlanetaryBody (void);
+extern void GetPlanetOrMoonName (UNICODE_CHAR *buf, COUNT bufsize);
 
 extern void PlanetOrbitMenu (void);
 extern void SaveSolarSysLocation (void);

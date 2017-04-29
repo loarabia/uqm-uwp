@@ -46,7 +46,7 @@
 #include "libs/misc.h"
 
 
-static void DrawFadeText (const UNICODE *str1, const UNICODE *str2,
+static void DrawFadeText (const UNICODE_CHAR *str1, const UNICODE_CHAR *str2,
 		BOOLEAN fade_in, RECT *pRect);
 
 
@@ -310,7 +310,7 @@ InitEncounter (void)
 	}
 	else
 	{
-		UNICODE buf[256];
+		UNICODE_CHAR buf[256];
 
 		t.pStr = GAME_STRING (ENCOUNTER_STRING_BASE + 2);
 				// "ENCOUNTER AT"
@@ -408,7 +408,7 @@ InitEncounter (void)
 }
 
 static void
-DrawFadeText (const UNICODE *str1, const UNICODE *str2, BOOLEAN fade_in,
+DrawFadeText (const UNICODE_CHAR *str1, const UNICODE_CHAR *str2, BOOLEAN fade_in,
 		RECT *pRect)
 {
 	SIZE i;
@@ -501,10 +501,10 @@ UninitEncounter (void)
 		RECT scavenge_r = {{0, 0}, {0, 0}};
 		TEXT t;
 		STAMP ship_s;
-		const UNICODE *str1 = NULL;
-		const UNICODE *str2 = NULL;
+		const UNICODE_CHAR *str1 = NULL;
+		const UNICODE_CHAR *str2 = NULL;
 		StatMsgMode prevMsgMode;
-		UNICODE buf[80];
+		UNICODE_CHAR buf[80];
 		HSHIPFRAG hStarShip;
 		SHIP_FRAGMENT *FragPtr;
 		static const Color fade_ship_cycle[] =
@@ -616,7 +616,7 @@ UninitEncounter (void)
 								utf8StringCopy (buf, sizeof buf,
 										GetStringAddress (FragPtr->race_strings));
 								// XXX: this will not work with UTF-8 strings
-								strupr (buf);
+								_strupr (buf);
 
 								t.baseline.x = scavenge_r.corner.x + 100;
 								t.baseline.y = scavenge_r.corner.y + 68;

@@ -56,11 +56,13 @@ log_displayBox (const /*UTF-8*/char *title, int isError,
 	LPWSTR swMsg = toWideChar (msg);
 	UINT uType = isError ? MB_ICONWARNING : MB_ICONINFORMATION;
 
+	//TODO FIX ME neutered this rather than make it link ...
+	/*
 	if (swTitle && swMsg)
 		MessageBoxW (NULL, swMsg, swTitle, uType);
 	else // Could not convert; let's try ASCII, though it may look ugly
 		MessageBoxA (NULL, msg, title, uType);
-
+		*/
 	free (swTitle);
 	free (swMsg);
 }

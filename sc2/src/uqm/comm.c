@@ -67,7 +67,7 @@
 static CONTEXT AnimContext;
 
 LOCDATA CommData;
-UNICODE shared_phrase_buf[2048];
+UNICODE_CHAR shared_phrase_buf[2048];
 
 static BOOLEAN TalkingFinished;
 static CommIntroMode curIntroMode = CIM_DEFAULT;
@@ -92,14 +92,14 @@ typedef struct encounter_state
 	BYTE top_response;
 	RESPONSE_ENTRY response_list[MAX_RESPONSES];
 
-	UNICODE phrase_buf[1024];
+	UNICODE_CHAR phrase_buf[1024];
 } ENCOUNTER_STATE;
 
 static ENCOUNTER_STATE *pCurInputState;
 
 static BOOLEAN clear_subtitles;
 static TEXT SubtitleText;
-static const UNICODE *last_subtitle;
+static const UNICODE_CHAR *last_subtitle;
 
 static CONTEXT TextCacheContext;
 static FRAME TextCacheFrame;
@@ -462,7 +462,7 @@ RefreshResponses (ENCOUNTER_STATE *pES)
 }
 
 static void
-FeedbackPlayerPhrase (UNICODE *pStr)
+FeedbackPlayerPhrase (UNICODE_CHAR *pStr)
 {
 	SetContext (SpaceContext);
 	
@@ -792,7 +792,7 @@ typedef struct summary_state
 	BOOLEAN Initialized;
 	BOOLEAN PrintNext;
 	SUBTITLE_REF NextSub;
-	const UNICODE *LeftOver;
+	const UNICODE_CHAR *LeftOver;
 
 } SUMMARY_STATE;
 
@@ -895,7 +895,7 @@ DoConvSummary (SUMMARY_STATE *pSS)
 		if (row >= MAX_SUMM_ROWS && (pSS->NextSub || pSS->LeftOver))
 		{	// draw *MORE*
 			TEXT mt;
-			UNICODE buffer[80];
+			UNICODE_CHAR buffer[80];
 
 			mt.baseline.x = SIS_SCREEN_WIDTH >> 1;
 			mt.baseline.y = t.baseline.y;
@@ -1143,7 +1143,7 @@ DoCommunication (ENCOUNTER_STATE *pES)
 
 void
 DoResponsePhrase (RESPONSE_REF R, RESPONSE_FUNC response_func,
-		UNICODE *ConstructStr)
+		UNICODE_CHAR *ConstructStr)
 {
 	ENCOUNTER_STATE *pES = pCurInputState;
 	RESPONSE_ENTRY *pEntry;
@@ -1169,7 +1169,7 @@ DoResponsePhrase (RESPONSE_REF R, RESPONSE_FUNC response_func,
 		locString = SetAbsStringTableIndex (CommData.ConversationPhrases,
 				(COUNT) (R - 1));
 		pEntry->response_text.pStr =
-				(UNICODE *) GetStringAddress (locString);
+				(UNICODE_CHAR *) GetStringAddress (locString);
 
 		if (luaUqm_comm_stringNeedsInterpolate (pEntry->response_text.pStr))
 		{
@@ -1627,7 +1627,7 @@ ClearSubtitles (void)
 static void
 CheckSubtitles (void)
 {
-	const UNICODE *pStr;
+	const UNICODE_CHAR *pStr;
 
 	pStr = GetTrackSubtitle ();
 

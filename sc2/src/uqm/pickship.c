@@ -202,7 +202,7 @@ ChangeSelection:
 					locString = SetAbsStringTableIndex (
 							StarShipPtr->race_strings,
 							StarShipPtr->captains_name_index);
-					t.pStr = (UNICODE *)GetStringAddress (locString);
+					t.pStr = (UNICODE_CHAR *)GetStringAddress (locString);
 					t.CharCount = GetStringLength (locString);
 					crew_level = StarShipPtr->crew_level;
 					max_crew = StarShipPtr->max_crew;

@@ -304,7 +304,7 @@ DiscussConquer (RESPONSE_REF R)
 	if (PHRASE_ENABLED (conquer_because_1))
 	{
 #if 0
-		UNICODE buf[ALLIANCE_NAME_BUFSIZE];
+		UNICODE_CHAR buf[ALLIANCE_NAME_BUFSIZE];
 
 		GetAllianceName (buf, name_1);
 		construct_response (

@@ -19,3 +19,6 @@
 #	include "config_unix.h"
 #endif
 
+//TODO FIX ME
+// Make this come from MSBUILD
+#define VCPKG 1

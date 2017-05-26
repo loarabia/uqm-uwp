@@ -501,13 +501,9 @@ typedef unsigned int wint_t;
 #	undef SDL_IMAGE_DIR
 #endif
 
-#ifdef WIN32
+#ifdef VCPKG
 #    define SDL_DIR SDL2
 #    define SDL_IMAGE_DIR SDL2
-#endif
-
-#ifdef WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-#    undef SDL_DIR
 #endif
 
 #ifdef SDL_DIR
@@ -519,7 +515,7 @@ typedef unsigned int wint_t;
 #ifdef SDL_IMAGE_DIR
 #	define SDL_IMAGE_INCLUDE(file) <SDL_IMAGE_DIR/file>
 #else
-#	define SDL_IMAGE_INCLUDE(file) <SDL_IMAGE_DIR/file>
+#   define SDL_IMAGE_INCLUDE(file) <file>
 #endif  /* SDL_IMAGE_DIR */
 
 // Mark a function as using printf-style function arguments, so that

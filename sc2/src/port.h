@@ -501,13 +501,9 @@ typedef unsigned int wint_t;
 #	undef SDL_IMAGE_DIR
 #endif
 
-#ifdef WIN32
+#ifdef VCPKG
 #    define SDL_DIR SDL2
 #    define SDL_IMAGE_DIR SDL2
-#endif
-
-#ifdef WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-#    undef SDL_DIR
 #endif
 
 #ifdef SDL_DIR

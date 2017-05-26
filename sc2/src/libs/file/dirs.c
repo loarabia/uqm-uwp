@@ -89,21 +89,21 @@ mkdirhier (const char *path)
 		ptr[0] = '/';
 		ptr[1] = '\0';
 		//XXX TODO FIX ME
-		#include "windir.h"
-		int todo = 999;
-		FILE * file = _wfopen(
-			L"C:\\Users\\loara\\AppData\\Roaming\\uqm\\uqm.cfg",
-			"r");
-		win_getdirname();
-		if (_wstat(L"C:\\Users\\loara\\AppData\\Roaming\\uqm\\uqm.cfg", &statbuf) == -1)
-		//if (_wstat("ms-appdata:///roaming/uqm/uqm.cfg", &statbuf) == -1)
-		{
-			todo = 777;
-		}
-		else
-		{
-			todo = 444;
-		}
+		//#include "windir.h"
+		//int todo = 999;
+		//FILE * file = _wfopen(
+		//	L"C:\\Users\\loara\\AppData\\Roaming\\uqm\\uqm.cfg",
+		//	"r");
+		//win_getdirname();
+		//if (_wstat(L"C:\\Users\\loara\\AppData\\Roaming\\uqm\\uqm.cfg", &statbuf) == -1)
+		////if (_wstat("ms-appdata:///roaming/uqm/uqm.cfg", &statbuf) == -1)
+		//{
+		//	todo = 777;
+		//}
+		//else
+		//{
+		//	todo = 444;
+		//}
 
 		if (stat (buf, &statbuf) == -1)
 		{

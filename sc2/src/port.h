@@ -501,6 +501,11 @@ typedef unsigned int wint_t;
 #	undef SDL_IMAGE_DIR
 #endif
 
+#ifdef VCPKG
+#    define SDL_DIR SDL2
+#    define SDL_IMAGE_DIR SDL2
+#endif
+
 #ifdef SDL_DIR
 #	define SDL_INCLUDE(file) <SDL_DIR/file>
 #else

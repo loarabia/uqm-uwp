@@ -18,8 +18,8 @@
 #define _SDLTHREAD_H
 
 #include "port.h"
-#include SDL_INCLUDE(SDL2/SDL.h)
-#include SDL_INCLUDE(SDL2/SDL_thread.h)
+#include SDL_INCLUDE(SDL.h)
+#include SDL_INCLUDE(SDL_thread.h)
 #include "libs/threadlib.h"
 #include "libs/timelib.h"
 
